@@ -5,7 +5,7 @@ using System.Text;
 
 Console.WriteLine("Hello, World!");
 
-CreateClientRequest createClientRequest = new CreateClientRequest()
+var createClientRequest = new CreateClientRequest()
 {                
                     CurrencyId = "GBP",
                     IBAN = "GB82WEST12345698765432",
@@ -64,7 +64,7 @@ CreateClientRequest createClientRequest = new CreateClientRequest()
                 
 };
 
-ChangeClientPasswordRequest changeClientPasswordRequest = new ChangeClientPasswordRequest()
+var changeClientPasswordRequest = new ChangeClientPasswordRequest()
 {
     RequestHash = "",
     Login = "johndoe",
@@ -98,8 +98,113 @@ var filterClientRequest = new FilterClientRequest
     IsWithRestrictions = true // If true client will be returned with the restrictions params (CanLogin, CanBet, CanDeposit, CanWithdraw)
 };
 
+var filterClientRequestEmail = new FilterClientRequest()
+{
+    //Id = null,
+    //RequestHash = null,
+    //RegistrationFromStamp = null,
+    //RegistrationToStamp = null,
+    //NickName = null,
+    //FirstName = null,
+    //LastName = null,
+    //MiddleName = null,
+    //Gender = null,
+    //BirthDateStamp = null,
+    //DocumentNumber = null,
+    //PersonalId = null,
+    Email = "1johndoe@example.com",
+    //Phone = null,
+    //MobilePhone = null,
+    //IsLocked = null,
+    //RegionCode = null,
+    //City = null,
+    //Login = null,
+    //CurrencyId = null,
+    //ExternalId = null,
+    //IsWithRestrictions = null
+};
+
+var filterClientRequestID = new FilterClientRequest()
+{
+    Id = 8,
+    //RequestHash = null,
+    //RegistrationFromStamp = null,
+    //RegistrationToStamp = null,
+    //NickName = null,
+    //FirstName = null,
+    //LastName = null,
+    //MiddleName = null,
+    //Gender = null,
+    //BirthDateStamp = null,
+    //DocumentNumber = null,
+    //PersonalId = null,
+    //Email = "johndoe@example.com",
+    //Phone = null,
+    //MobilePhone = null,
+    //IsLocked = null,
+    //RegionCode = null,
+    //City = null,
+    //Login = null,
+    //CurrencyId = null,
+    //ExternalId = null,
+    //IsWithRestrictions = null
+};
+
+var filterClientRequestLogin = new FilterClientRequest()
+{
+    //Id = 2,
+    //RequestHash = null,
+    //RegistrationFromStamp = null,
+    //RegistrationToStamp = null,
+    //NickName = null,
+    //FirstName = null,
+    //LastName = null,
+    //MiddleName = null,
+    //Gender = null,
+    //BirthDateStamp = null,
+    //DocumentNumber = null,
+    //PersonalId = null,
+    //Email = "johndoe@example.com",
+    //Phone = null,
+    //MobilePhone = null,
+    //IsLocked = null,
+    //RegionCode = null,
+    //City = null,
+    Login = "alicesmith",
+    //CurrencyId = null,
+    //ExternalId = null,
+    //IsWithRestrictions = null
+};
+
+var filterClientRequestFIO = new FilterClientRequest()
+{
+    //Id = 2,
+    //RequestHash = null,
+    //RegistrationFromStamp = null,
+    //RegistrationToStamp = null,
+    //NickName = null,
+    FirstName = "Michael",
+    LastName = "Johnson",
+    MiddleName = "1Peter"
+    //Gender = null,
+    //BirthDateStamp = null,
+    //DocumentNumber = null,
+    //PersonalId = null,
+    //Email = "johndoe@example.com",
+    //Phone = null,
+    //MobilePhone = null,
+    //IsLocked = null,
+    //RegionCode = null,
+    //City = null,
+    //Login = "alicesmith",
+    //CurrencyId = null,
+    //ExternalId = null,
+    //IsWithRestrictions = null
+};
 
 string secretKey = "Zg9m9fUqcnuPOg8";
+
+
 
 string requestHashForCreateClient = CalculateRequestHash(createClientRequest, secretKey);
 
@@ -107,11 +212,28 @@ string requestHashForChangePassword = CalculateRequestHash(changeClientPasswordR
 
 string requestHashForFilterClient = CalculateRequestHash(filterClientRequest, secretKey);
 
+string requestHashForFilterClientEmail = CalculateRequestHash(filterClientRequestEmail, secretKey);
+
+string requestHashForFilterClientID = CalculateRequestHash(filterClientRequestID, secretKey);
+
+string requestHashForFilterClientLogin = CalculateRequestHash(filterClientRequestLogin, secretKey);
+
+string requestHashForFilterClientFIO = CalculateRequestHash(filterClientRequestFIO, secretKey);
+
+
 Console.WriteLine("ForCreateClient " + requestHashForCreateClient);
 
 Console.WriteLine("ForChangePassword " + requestHashForChangePassword);
 
 Console.WriteLine("ForFilterClient " + requestHashForFilterClient);
+
+Console.WriteLine("ForFilterClientEmail " + requestHashForFilterClientEmail);
+
+Console.WriteLine("ForFilterClientID " + requestHashForFilterClientID);
+
+Console.WriteLine("ForFilterClientLogin " + requestHashForFilterClientLogin);
+
+Console.WriteLine("ForFilterClientFIO " + requestHashForFilterClientFIO);
 
 static string CalculateRequestHash(object obj, string key)
 {
@@ -148,27 +270,27 @@ static string CalculateRequestHash(object obj, string key)
 public class FilterClientRequest
 {
     public int? Id { get; set; } //Client Id
-    public string RequestHash { get; set; } //required for partner verification
+    public string? RequestHash { get; set; } //required for partner verification
     public long? RegistrationFromStamp { get; set; }
     public long? RegistrationToStamp { get; set; }
-    public string NickName { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string MiddleName { get; set; }
+    public string? NickName { get; set; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? MiddleName { get; set; }
     public int? Gender { get; set; } // Male = 1, Female = 2
     public long? BirthDateStamp { get; set; } // UNIX timestamp representation of registration date
-    public string DocumentNumber { get; set; }
-    public string PersonalId { get; set; }
-    public string Email { get; set; }
-    public string Phone { get; set; }
-    public string MobilePhone { get; set; }
+    public string? DocumentNumber { get; set; }
+    public string? PersonalId { get; set; }
+    public string? Email { get; set; }
+    public string? Phone { get; set; }
+    public string? MobilePhone { get; set; }
     public bool? IsLocked { get; set; }
-    public string RegionCode { get; set; }
-    public string City { get; set; }
-    public string Login { get; set; }
-    public string CurrencyId { get; set; }
-    public string ExternalId { get; set; }
-    public bool IsWithRestrictions { get; set; } //If true client will be returned with the restrictions params (CanLogin, CanBet, CanDeposit, CanWithdraw)
+    public string? RegionCode { get; set; }
+    public string? City { get; set; }
+    public string? Login { get; set; }
+    public string? CurrencyId { get; set; }
+    public string? ExternalId { get; set; }
+    public bool? IsWithRestrictions { get; set; } //If true client will be returned with the restrictions params (CanLogin, CanBet, CanDeposit, CanWithdraw)
 }
 
 public class ChangeClientPasswordRequest
